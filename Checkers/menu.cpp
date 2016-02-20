@@ -14,18 +14,19 @@ Menu::Menu(QGraphicsScene*scene):vertical_2(0)
     vertical_1 = new QVBoxLayout;
     vertical_0 = new QVBoxLayout;
 
-    QLabel *lbl = new QLabel;
 
-    vertical_0->setMargin(0);
-    vertical_0->setSpacing(10);
+//    QLabel *lbl = new QLabel;
+
+//    vertical_0->setMargin(0);
+//    vertical_0->setSpacing(10);
 
     mov = new QMovie("giphy.gif");
 
-    lbl->setMovie(mov);
-    lbl->resize(700, 700);
+//    lbl->setMovie(mov);
+//    lbl->resize(700, 700);
 
 
-    vertical_0->addWidget(lbl);
+//    vertical_0->addWidget(lbl);
 
 
 
@@ -35,8 +36,8 @@ Menu::Menu(QGraphicsScene*scene):vertical_2(0)
     LoadGame = new Button("&Загрузить игру");
     ExitFromGame = new Button("&Выход");
 
-    vertical_1->setMargin(5);
-    vertical_1->setSpacing(10);
+    vertical_1->setMargin(20);
+    vertical_1->setSpacing(30);
 
 
 
@@ -44,10 +45,10 @@ Menu::Menu(QGraphicsScene*scene):vertical_2(0)
     vertical_1->addWidget(LoadGame);
     vertical_1->addWidget(ExitFromGame);
 
-    horizontal->addLayout(vertical_0);
+    //horizontal->addLayout(vertical_0);
     horizontal->addLayout(vertical_1);
 
-    horizontal->setAlignment(vertical_0,Qt::AlignHCenter);
+    horizontal->setAlignment(vertical_1,Qt::AlignRight);
 
     setLayout(horizontal);
 }
@@ -92,13 +93,12 @@ void Menu::GameModeSelection(bool)
         GameWithTwoPlayers = new Button("2 Игрока");
         GameVsPc = new Button("Против компьютера");
 
-        vertical_2->setAlignment(GameWithTwoPlayers,Qt::AlignCenter);
-        vertical_2->setAlignment(GameVsPc,Qt::AlignCenter);
-
-
         vertical_2->addWidget(GameWithTwoPlayers);
         vertical_2->addWidget(GameVsPc);
+        vertical_2->setMargin(0);
+        vertical_2->setSpacing(30);
         horizontal->addLayout(vertical_2);
+        horizontal->setAlignment(vertical_2,Qt::AlignJustify);
     }
     else{
         GameWithTwoPlayers->~Button();

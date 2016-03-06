@@ -1,8 +1,13 @@
 #include "view.h"
 
+View::View(QWidget *parent): QGraphicsView(parent)
+{
+}
+
 View::View(QGraphicsScene &scene)
 {
-    autoFillBackground();
+    setAutoFillBackground(true);
+    setBaseSize(1200,800);
     setScene(&scene);
 }
 

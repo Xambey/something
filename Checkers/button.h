@@ -5,6 +5,7 @@
 class Button: public QPushButton/*, public QGraphicsItem*/
 {
 public:
+    explicit Button(QWidget* parent = 0);
     Button(QString);
     ~Button();
 signals:

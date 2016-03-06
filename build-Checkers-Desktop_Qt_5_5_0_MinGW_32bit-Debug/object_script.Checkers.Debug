@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\map.o
+./debug\player.o
+./debug\cell.o
+./debug\menu.o
+./debug\game.o
+./debug\system.o
+./debug\view.o
+./debug\button.o
+./debug\moc_map.o
+./debug\moc_menu.o
+);

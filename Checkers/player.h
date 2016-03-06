@@ -5,10 +5,11 @@
 #include <QWidget>
 #include <QtWidgets>
 #include "map.h"
-class Player
+class Player: public QWidget
 {
+    Q_OBJECT
 public:
-    Player();
+    explicit Player(QWidget* parent = 0);
 
 signals:
 

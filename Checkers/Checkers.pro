@@ -1,4 +1,5 @@
 QT += widgets
+CONFIG += console
 
 SOURCES += \
     main.cpp \
@@ -6,22 +7,27 @@ SOURCES += \
     player.cpp \
     cell.cpp \
     menu.cpp \
-    game.cpp \
     system.cpp \
     view.cpp \
-    formmenu.cpp \
-    button.cpp
+    button.cpp \
+    startmenu.cpp \
+    menunewgame.cpp \
+    gamewithtwoplayers.cpp \
+    check.cpp
 
 HEADERS += \
     map.h \
     player.h \
     cell.h \
     menu.h \
-    game.h \
     system.h \
     view.h \
-    formmenu.h \
-    button.h
+    button.h \
+    startmenu.h \
+    menunewgame.h \
+    gamewithtwoplayers.h \
+    check.h
 
-FORMS += \
-    formmenu.ui
+FORMS +=
+
+

@@ -2,37 +2,40 @@
 #define MENU_H
 
 #include <QtWidgets>
-#include <button.h>
+#include "startmenu.h"
+#include "menunewgame.h"
+#include "gamewithtwoplayers.h"
 
-class Menu: public QWidget
+class Menu: public QWidget, public QGraphicsItem
 {
     Q_OBJECT
 private:
+    GameWithTwoPlayers* gameWithTwoPlayers;
     QGraphicsScene* scene;
     QPixmap pxt;
-    QVBoxLayout* vertical_0;
-    QVBoxLayout* vertical_1;
-    QVBoxLayout* vertical_2;
+
     QHBoxLayout* horizontal;
 
-    QMovie* mov;
+    StartMenu* startMenu;
+    MenuNewGame* menuNewGame;
 
-    //buttons
-    Button* ExitFromGame;
-    Button* NewGame;
-    Button* LoadGame;
-    Button* GameWithTwoPlayers;
-    Button* GameVsPc;
-    void SetPalette();
+    QVBoxLayout* vertical;
+    void SetBackground();
 
 public:
+    explicit Menu(QWidget* parent = 0);
     Menu(QGraphicsScene* scene);
+    virtual void paint(QPainter*,const QStyleOptionGraphicsItem*,QWidget*){}
+
+    virtual QRectF boundingRect() const{QRectF f;return f;}
     QSize GetSizeMenu();
     QPushButton* GetButtonForExit();
-    QPushButton* GetButtonForNewGame();
-    QMovie* GetMovie();
+    QPushButton* GetButtonForGameWithTwoPlayers();
+
 public slots:
-    void GameModeSelection(bool);
+    void PressedNewGameButton(bool);
+    void PressedBackButton(bool);
+    void StartGameWithTwoPlayers(bool);
 };
 
 #endif // MENU_H

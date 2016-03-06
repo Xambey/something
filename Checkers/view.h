@@ -5,6 +5,7 @@
 class View : public QGraphicsView
 {
 public:
+    explicit View(QWidget*parent = 0);
     View(QGraphicsScene&);
 
 protected:

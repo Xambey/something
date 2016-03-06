@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\map.o
+./release\player.o
+./release\cell.o
+./release\menu.o
+./release\game.o
+./release\system.o
+./release\view.o
+./release\button.o
+./release\moc_map.o
+./release\moc_menu.o
+);

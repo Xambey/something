@@ -2,33 +2,32 @@
 
 MyMap::MyMap(QWidget *parent):QWidget(parent)
 {
-    QGridLayout* layout = new QGridLayout(parent);
-    int j = 0,k = 0;
-    char f = true;
-    for(int i(0); i < 64; i++,k++) {
-        cell* button = new cell(QString::number(i+1));
-        if(f){
-//            QPixmap pix("yellow.png");
-//            QPalette pal;
-//            pal.setBrush(button->backgroundRole(),QBrush(pix));
-//            button->setPalette(pal);
-            button->setAutoFillBackground(true);
-        }/* else{
-            QPixmap pix("yellow.png");
-            QPalette pal;
-            pal.setBrush(button->backgroundRole(),QBrush(pix));
-            button->setPalette(pal);
-        }*/
+    vertical = new QVBoxLayout(this);
+    grid = new QGridLayout;
+    vertical->addLayout(grid);
+    vertical->setSpacing(0);
+    vertical->setMargin(0);
 
-        layout->addWidget(button,j,k);
-
-        if(k == 7){
-            j++;
-            k = -1;
+    int number(0);
+    for(int i(0); i < Size; i++) {
+        for(int j(0); j < Size; j++, number++) {
+            grid->addWidget(new Cell(number),i,j);
         }
+        number++;
     }
-    parent->setLayout(layout);
+    grid->setMargin(0);
+    grid->setSpacing(0);
+    setAutoFillBackground(true);
+    resize(1200,800);
 
+    Check* check = new Check;
+    grid->;
+
+}
+
+QVBoxLayout *MyMap::GetVboxLayout()
+{
+    return vertical;
 }
 
 

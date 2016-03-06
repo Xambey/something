@@ -2,10 +2,15 @@
 #define CELL_H
 #include <QtWidgets>
 
-class cell: public QPushButton
+class Cell: public QWidget
 {
+    Q_OBJECT
 public:
-    cell(const QString &text);
+    explicit Cell(int number, QWidget*parent = 0);
+private:
+    QPixmap pxt;
+    void SetBackground();
+    int Number;
 protected:
     virtual void paintEvent(QPaintEvent *);
 signals:

@@ -17,7 +17,7 @@ Button::Button(QString name):QPushButton(name){
                                         "border-width: 0px;"
                                         "border-radius: 10px;"
                                         "border-color: beige;"
-                                        "font: bold 14p;"
+                                        "font: bold 15p;"
                                         "min-width: 10em;"
                                         "padding: 0px;"
                                     "}"

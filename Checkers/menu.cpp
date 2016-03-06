@@ -1,66 +1,53 @@
 #include <QtWidgets>
 #include "menu.h"
 
+#define TwoPlayers 1
+#define GameVsPc 2
 
-#define HeightButton 80
-#define WidthButton 60
-
-Menu::Menu(QGraphicsScene*scene):vertical_2(0)
+Menu::Menu(QGraphicsScene*scene)
 {
     this->scene = scene;
-    SetPalette();
+    SetBackground();
 
     horizontal = new QHBoxLayout;
-    vertical_1 = new QVBoxLayout;
-    vertical_0 = new QVBoxLayout;
+    vertical = new QVBoxLayout;
 
+    startMenu = new StartMenu;
+    menuNewGame = new MenuNewGame;
+    gameWithTwoPlayers = NULL;
 
-//    QLabel *lbl = new QLabel;
+    vertical->addWidget(startMenu);
 
-//    vertical_0->setMargin(0);
-//    vertical_0->setSpacing(10);
+    vertical->setMargin(0);
+    vertical->setSpacing(0);
+    horizontal->setMargin(0);
+    horizontal->setSpacing(0);
 
-    mov = new QMovie("giphy.gif");
+    horizontal->addLayout(vertical);
 
-//    lbl->setMovie(mov);
-//    lbl->resize(700, 700);
+    horizontal->setAlignment(vertical,Qt::AlignRight);
 
-
-//    vertical_0->addWidget(lbl);
-
-
-
-
-
-    NewGame = new Button("&Новая игра");
-    LoadGame = new Button("&Загрузить игру");
-    ExitFromGame = new Button("&Выход");
-
-    vertical_1->setMargin(20);
-    vertical_1->setSpacing(30);
-
-
-
-    vertical_1->addWidget(NewGame);
-    vertical_1->addWidget(LoadGame);
-    vertical_1->addWidget(ExitFromGame);
-
-    //horizontal->addLayout(vertical_0);
-    horizontal->addLayout(vertical_1);
-
-    horizontal->setAlignment(vertical_1,Qt::AlignRight);
+//all connections
+    QObject::connect(startMenu->GetNewGameButton(),SIGNAL(clicked(bool)),this,SLOT(PressedNewGameButton(bool)));
+    QObject::connect(menuNewGame->GetBackButton(),SIGNAL(clicked(bool)),this,SLOT(PressedBackButton(bool)));
+    QObject::connect(menuNewGame->GetGameWithTwoPlayersButton(),SIGNAL(clicked(bool)),this,SLOT(StartGameWithTwoPlayers(bool)));
 
     setLayout(horizontal);
+    startMenu->show();
 }
 
-void Menu::SetPalette()
+void Menu::SetBackground()
 {
     pxt.load("background.png");
     QPalette pal;
     pal.setBrush(backgroundRole(),pxt);
     setPalette(pal);
     resize(1200,800);
-    autoFillBackground();
+    setAutoFillBackground(true);
+}
+
+Menu::Menu(QWidget *parent): QWidget(parent)
+{
 }
 
 QSize Menu::GetSizeMenu()
@@ -70,43 +57,41 @@ QSize Menu::GetSizeMenu()
 
 QPushButton *Menu::GetButtonForExit()
 {
-    return ExitFromGame;
+    return startMenu->GetExitFromGameButton();
 }
 
-QPushButton *Menu::GetButtonForNewGame()
+QPushButton *Menu::GetButtonForGameWithTwoPlayers()
 {
-    return NewGame;
+    return menuNewGame->GetGameWithTwoPlayersButton();
 }
 
-QMovie *Menu::GetMovie()
+void Menu::PressedNewGameButton(bool)
 {
-    return mov;
+    //Не трогать! Древняя магия
+    startMenu->hide();
+    vertical->removeWidget(startMenu);
+
+
+    vertical->addWidget(menuNewGame);
+    menuNewGame->show();
 }
 
-void Menu::GameModeSelection(bool)
-{   
+void Menu::PressedBackButton(bool)
+{
+    //Не трогать! Древняя магия
 
-    if(vertical_2 == NULL){
-        vertical_2 = new QVBoxLayout;
-        scene->update();
+    menuNewGame->hide();
 
-        GameWithTwoPlayers = new Button("2 Игрока");
-        GameVsPc = new Button("Против компьютера");
+    vertical->removeWidget(menuNewGame);
 
-        vertical_2->addWidget(GameWithTwoPlayers);
-        vertical_2->addWidget(GameVsPc);
-        vertical_2->setMargin(0);
-        vertical_2->setSpacing(30);
-        horizontal->addLayout(vertical_2);
-        horizontal->setAlignment(vertical_2,Qt::AlignJustify);
-    }
-    else{
-        GameWithTwoPlayers->~Button();
-        GameVsPc->~Button();
-        vertical_2->~QVBoxLayout();
-        vertical_2 = NULL;
-    }
+    vertical->addWidget(startMenu);
+    startMenu->show();
+}
 
+void Menu::StartGameWithTwoPlayers(bool)
+{
+    scene->removeItem(this);
+    gameWithTwoPlayers = new GameWithTwoPlayers(scene);
 }
 
 

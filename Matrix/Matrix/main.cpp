@@ -1,171 +1,148 @@
 #include <iostream>
 #include <string>
-#include "matrix.h"
 #include <ctime>
 #include <cstring>
-#include <iostream>
-void
-__test_isSymmetric()
-{
-	Matrix<int> m(4, 4, 0);
-	std::cout << "Матрица: " << std::endl << m;
-	std::cout << "Симметрична: " << (m.isSymmetric() ? "Нет" : "Да") << std::endl << std::endl;
-}
+#include "matrix.cpp"
+using namespace std;
 
-void
+void //сложение матриц
 __test_operatorPlus()
 {
-	// Сложение матриц
-	Matrix<int> a(3, 3, 2);
-	Matrix<int> b(3, 3, 3);
-	std::cout << "Матрица A:" << std::endl << a;
-	std::cout << "Матрица B:" << std::endl << b;
-	std::cout << "Матрица A+B:" << std::endl << a + b << std::endl;
+    Matrix<int> a(3, 3, 2);
+    Matrix<int> b(3, 3, 3);
+    std::cout << "Матрица A:" << std::endl << a;
+    std::cout << "Матрица B:" << std::endl << b;
+    std::cout << "Матрица A+B:" << std::endl << a + b << std::endl;
 }
 
-void
+void // вычитание матриц
 __test_operatorMinus()
 {
-	// Вычитание матриц.
-	Matrix<int> a(3, 2, 2);
-	Matrix<int> b(2, 2, 8);
-	std::cout << "Матрица A:" << std::endl << a;
-	std::cout << "Матрица B:" << std::endl << b;
-	std::cout << "Матрица A-B:" << std::endl << a - b << std::endl;
+    Matrix<int> a(3, 3, 2);
+    Matrix<int> b(3, 3, 3);
+    std::cout << "Матрица A:" << std::endl << a;
+    std::cout << "Матрица B:" << std::endl << b;
+    std::cout << "Матрица A-B:" << std::endl << a - b << std::endl;
 }
-<<<<<<< HEAD
-//void
-//__test_invert ()
-//{
-//	/** обратная матрица
-//	Matrix <int> m(3, 3, 0);
-//	m.put(0, 0, 5);
-//	m.put(1, 1, 3);
-//	m.put(2, 2, 2);
-//	std::cout << m.invert() << std::endl;
-//	
-//}
-=======
-void
-__test_invert ()
+
+void //транспонирование матрицы
+__test_transposition()
 {
-	// обратная матрица
-	Matrix <int> m(3, 3, 0);
-	m.put(0, 0, 5);
-	m.put(1, 1, 3);
-	m.put(2, 2, 2);
-	std::cout << m.invert() << std::endl;
-
+    Matrix <int> a(8, 4, 1);
+    a.put(5, 1, 2);
+    a.put(2, 3, 1);
+    a.put(2, 2, 2);
+    std::cout << "Матрица: " << std::endl << a << std::endl;
+    std::cout << "Transp.: " << std::endl << a.transponse() << std::endl;
 }
->>>>>>> b228019606131753fd38a2a7c66502e0c474beec
-void
-__test_transposition ()
+
+
+
+void //перемножение матриц
+__test_operatorUMN()
 {
-	Matrix <int> a(8, 4, 1);
-	a.put(5, 1, 2);
-	a.put(2, 3, 1);
-	a.put(2, 2, 2);
-	std::cout << "Матрица: " << std::endl << a << std::endl;
-	std::cout << "Transp.: " << std::endl;
+    Matrix<int> a(3, 3, 2);
+    Matrix<int> b(2, 2, 3);
+    std::cout << "Матрица A:" << std::endl << a;
+    std::cout << "Матрица B:" << std::endl << b;
+    std::cout << "Матрица A*B:" << std::endl << a*b << std::endl;
 }
 
-//void
-//__test_determinant()
-//{
-//	/**Определитель матрицы
-//	Matrix <int> a(3, 3, 0);
-//	a.put(0, 0, 5);
-//	a.put(1, 1, 3);
-//	a.put(2, 2, 2);
-//	std::cout << "Матрица A:" << std::endl << a;
-//	std::cout << "det(A)=" << a.determinant() << std::endl;
-//}
 
-void
-__test_isMinor()
+void //загрузка матрицы из файкла
+__test_LoadByFile()
 {
-	// Минор
-	Matrix <int> m(4, 4, 0);
-	for (int i = 0, i2 = 0; i < m.getRowCount(); i++, i2++) {
-		for (int j = 0, j2 = 0; j < m.getColCount(); j++, j2++) {
-			m.put(i2, j2, m.get(i, j));
-		}
-	}
-
-	int row = 3, col = 3;
-	std::cout << "Матрица: " << std::endl << m;
-	std::cout << "Минор (" << row << "," << col << ") = " << m.minor(row, col) << std::endl << std::endl;
+    Matrix <int> m(3, 3, 0);
+    m.loadFromFile("matrix2.txt");
 }
 
-<<<<<<< HEAD
-//void
-//__test_pow ()
-//{
-//	/** Возведение в степень.
-//	Matrix <int> m(1, 2, 3);
-//	int test = 2;
-//	std::cout << "Матрица: " << std::endl << m << std::endl;
-//	std::cout << m^(test) << std::endl;
-//}
-=======
-void
-__test_pow ()
+void //запись матрицы в файл
+__test_SaveFile()
 {
-	//Возведение в степень
-	Matrix <int> m(1, 2, 3);
-	for (int test = 0; test < 3; test++ ) {
-		std::cout << "Матрица: " << std::endl << m << std::endl << "Степень: " << test << std::endl;
-		std::cout << m^(test) << std::endl << std::endl;
-	}
+    Matrix <int> m(3, 3, 0);
+    m.saveToFile("matrix2.txt");
 }
->>>>>>> b228019606131753fd38a2a7c66502e0c474beec
 
-void
-__test_operatorMultByNumber()
+void // В матрице, состоящей из нулей и единиц, найдите квадрат (квадратная подматрица) наибольшего размера, состоящая только из нулей.
+__test_podmatrix()
 {
+    Matrix<int> m(8, 8, 1);
+    for (int i = 1; i < m.getRowCount() - 1; i++)
+    {
+        for (int j = 1; j < m.getColCount() - 1; j++)
+        {
+            m.put(i, j, 0);
+        }
+    }
+    m.put(3, 2, 1);
+    cout << "Индивидуальное задание (вариант №13):" << endl << "Исходная матрица: " << endl;
+    for (int i = 0; i < m.getRowCount(); i++)
+    {
+        for (int j = 0; j < m.getColCount(); j++)
+        {
+            cout << m.get(i, j) << " ";
+        }
+        cout << endl;
+    }
+    int col = 0;
 
-	// Умножение на число
-	Matrix<int> a(3, 3, 3);
-	std::cout << "Матрица A:" << std::endl << a;
-	std::cout << "Матрица A*5:" << std::endl << a * 5 << std::endl;
+    col = m.individualFind();
+    cout << endl << "Подматрица. Размер подматрицы = " << col << " x " << col << endl;;
+    for (int i = 0; i < col; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            cout << "0" << " ";
+        }
+        cout << endl;
+    }
 }
 
-//Сравнение матриц
-void
-__test_equality()
-{
-	// Умножение на число
-	Matrix<int> a(3, 3, 3);
-	Matrix<int> b(3, 3, 2);
-	std::cout << "Матрица A:" << std::endl << a;
-	std::cout << "Матрица B:" << std::endl << b << std::endl;
-	std::cout << "A=B ?  " << (a == b ? "Да" : "Нет") << std::endl;
-	std::cout << "A!=B ?  " << (a != b ? "Да" : "Нет") << std::endl;
-	std::cout << "A>=B ?  " << (a >= b ? "Да" : "Нет") << std::endl;
-	std::cout << "A<=B ?  " << (a <= b ? "Да" : "Нет") << std::endl << std::endl;
-}
-
-void
-pow()
-{
-	// Возведение в степень.
-	Matrix <int> m(3, 3, 2);
-	int n = 2;
-	std::cout << m^n« std::endl;
-}
-
-int
+int //главная ф-ция (меню)
 main(int argc, char **argv)
 {
-	setlocale(0, "Russian");
-	__test_isSymmetric();
-	__test_operatorPlus();
-	__test_operatorMinus();
-	//__test_determinant();
-	__test_isMinor();
-	//__test_pow();
-	__test_operatorMultByNumber();
-	__test_equality();
-	system("pause");
-	return EXIT_SUCCESS;
+    setlocale(0, "Russian");
+    char key;
+    cout << "\tМеню:\n1)ввод матрицы с клавиатуры\n2)сложение матриц\n3)вычитание матриц\n4)умножение матриц\n5)транспонирование матрицы\n6)Индивидуальное задание(вариант №13):\n'q' для выхода\n";
+    cin >> key;
+    Matrix <int> m(3, 3, 0);
+    while (key != 'q')
+    {
+        switch (key)
+        {
+        case '1':
+            //cout << "\nВаша матрица: \n" << Matrix<int>::readFromKeyboard() << endl;
+            m.loadFromFile("matrix2.txt");
+            cout << m;
+            break;
+        case '2':
+            cout << "\nВвод матрицы из файла..." << endl;
+            cout << "Вывод матриц в файл..." << endl;
+            __test_operatorPlus();
+            break;
+        case '3':
+            cout << "\nВвод матрицы из файла..." << endl;
+            cout << "Вывод матриц в файл..." << endl;
+            __test_operatorMinus();
+            break;
+        case '4':
+            cout << "\nВвод матрицы из файла..." << endl;
+            cout << "Вывод матриц в файл..." << endl;
+            __test_operatorUMN();
+            break;
+        case '5':
+            cout << "\nВвод матрицы из файла..." << endl;
+            cout << "Вывод матриц в файл..." << endl;
+            __test_transposition();
+            break;
+        case '6':
+            cout << "\nВвод матрицы из файла..." << endl;
+            cout << "Вывод матриц в файл..." << endl;
+            __test_podmatrix();
+            break;
+        }
+        cout << "\n\n\tМеню:\n1)ввод матрицы с клавиатуры\n2)сложение матриц\n3)вычитание матриц\n4)умножение матриц\n5)транспонирование матрицы\n6)Индивидуальное задание(вариант №13):\n'q' для выхода\n";
+        cin >> key;
+    }
+    return EXIT_SUCCESS;
 }

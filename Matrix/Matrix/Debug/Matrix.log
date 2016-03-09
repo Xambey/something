@@ -1,18 +1,28 @@
-﻿Сборка начата 07.03.2016 22:59:49.
+﻿Сборка начата 08.03.2016 21:49:52.
      1>Проект "C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Matrix\Matrix.vcxproj" в узле 2 (целевые объекты Build).
      1>InitializeBuildStatus:
-         Обращение к "Debug\Matrix.tlog\unsuccessfulbuild".
+         Создание "Debug\Matrix.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(116): error C2563: несоответствие в списке формальных параметров
-     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(116): error C2568: <<: не удается разрешить перегрузку функции
-         c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(116): note: может быть "std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)"
-     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(152): error C2563: несоответствие в списке формальных параметров
-     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(152): error C2568: <<: не удается разрешить перегрузку функции
-         c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(152): note: может быть "std::basic_ostream<_Elem,_Traits> &std::endl(std::basic_ostream<_Elem,_Traits> &)"
-     1>Сборка проекта "C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Matrix\Matrix.vcxproj" завершена (целевые объекты Build) с ошибкой.
+     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\matrix.cpp(182): warning C4018: <: несоответствие типов со знаком и без знака
+         c:\users\andrey\documents\github\xambey\something\matrix\matrix\matrix.cpp(181): note: при компиляции функции-члена "<Нет данных>" класса <Нет данных>
+         c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(32): note: см. ссылку на создание экземпляров функции шаблон при компиляции "void Matrix<int>::put(int,int,_Type)"
+                 with
+                 [
+                     _Type=int
+                 ]
+         c:\users\andrey\documents\github\xambey\something\matrix\matrix\main.cpp(11): note: см. ссылку на создание экземпляров класса шаблон при компиляции "Matrix<int>"
+     1>c:\users\andrey\documents\github\xambey\something\matrix\matrix\matrix.cpp(184): warning C4018: <: несоответствие типов со знаком и без знака
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Debug\Matrix.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Debug\Matrix.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Debug\Matrix.lib" /MACHINE:X86 Debug\main.obj
+         Debug\matrix.obj
+         Matrix.vcxproj -> C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Debug\Matrix.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Matrix.tlog\unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Matrix.tlog\Matrix.lastbuildstate".
+     1>Сборка проекта "C:\Users\Andrey\Documents\GitHub\Xambey\something\Matrix\Matrix\Matrix.vcxproj" завершена (целевые объекты Build).
 
-Ошибка сборки.
+Сборка успешно завершена.
 
-Затраченное время: 00:00:00.62
+Затраченное время: 00:00:02.97

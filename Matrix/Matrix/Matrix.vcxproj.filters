@@ -18,10 +18,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="matrix.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="matrix1.txt" />
+    <Text Include="matrix2.txt" />
+    <Text Include="matrix3.txt" />
+    <Text Include="output.txt" />
   </ItemGroup>
 </Project>

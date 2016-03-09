@@ -3,7 +3,7 @@
 
 
 template<typename _Type>
-void Matrix<_Type>::loadFromFile(std::string file) //Р·Р°РіСЂСѓР·РєР° РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
+void Matrix<_Type>::loadFromFile(std::string file) //загрузка матрицы из файла
 {
     _value.clear();
     std::ifstream s(file);
@@ -27,7 +27,7 @@ void Matrix<_Type>::loadFromFile(std::string file) //Р·Р°РіСЂСѓР·РєР° РјР°С‚СЂРё
 }
 
 template<typename _Type>
-void Matrix<_Type>::saveToFile(std::string file) //Р·Р°РїРёСЃСЊ РјР°С‚СЂРёС†С‹ РІ С„Р°Р№Р»
+void Matrix<_Type>::saveToFile(std::string file) //запись матрицы в файл
 {
     std::ofstream s(file);
     for  (auto line : _value) {
@@ -42,22 +42,23 @@ void Matrix<_Type>::saveToFile(std::string file) //Р·Р°РїРёСЃСЊ РјР°С‚СЂРёС†С‹ Р
 }
 
 template<typename _Type>
-void Matrix<_Type>::readFromKeyboard() //С‡С‚РµРЅРёРµ РјР°С‚СЂРёС†С‹ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
+void Matrix<_Type>::readFromKeyboard() //чтение матрицы с клавиатуры
 {
     int x, y;
-    std::cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ Рј-С†Рё:  (2 С‡РёСЃР»Р° С‡РµСЂРµР· РїСЂРѕР±РµР»)\n";
+    std::cout << "Введите размер м-ци:  (2 числа через пробел)\n";
     std::cin >> x >> y;
     Matrix m(x, y, 0);
     for (int i = 0; i < x; i++) {
-        std::cout << "Р’РІРµРґРёС‚Рµ " << i + 1 << "СЃС‚СЂРѕРєСѓ (" << y << " С‡РёСЃРµР» С‡РµСЂРµР· РїСЂРѕР±РµР»):\n";
+        std::cout << "Введите " << i + 1 << "строку (" << y << " чисел через пробел):\n";
         for (int j = 0; j < y; j++)
             std::cin >> m._value[i][j];
     }
-    _value = m;
+	std::cout << m << std::endl;
+	m.saveToFile("matrix2.txt");
 }
 
 template<typename _Type>
-void Matrix<_Type>::clear(int rows, int cols, _Type def) //РѕС‡РёСЃС‚РєР° РїР°РјСЏС‚Рё РјР°С‚СЂРёС†С‹
+void Matrix<_Type>::clear(int rows, int cols, _Type def) //очистка памяти матрицы
 {
     _value.clear();
     for (auto i = 0; i < rows; i++) {
@@ -72,7 +73,7 @@ void Matrix<_Type>::clear(int rows, int cols, _Type def) //РѕС‡РёСЃС‚РєР° РїР°Рј
 
 
 template<typename _Type>
-Matrix<_Type> Matrix<_Type>::operator+(const Matrix &that) // РѕРїРµСЂР°С‚РѕСЂ СЃР»РѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†
+Matrix<_Type> Matrix<_Type>::operator+(const Matrix &that) // оператор сложения матриц
 {
     if  (getRowCount() != that.getRowCount() ||
         getColCount() != that.getColCount()) {
@@ -89,7 +90,7 @@ Matrix<_Type> Matrix<_Type>::operator+(const Matrix &that) // РѕРїРµСЂР°С‚РѕСЂ С
 }
 
 template<typename _Type>
-Matrix<_Type> Matrix<_Type>::operator-(const Matrix &that) //РѕРїРµСЂР°С‚РѕСЂ РІС‹С‡РёС‚Р°РЅРёСЏ РјР°С‚СЂРёС†
+Matrix<_Type> Matrix<_Type>::operator-(const Matrix &that) //оператор вычитания матриц
 {
     if (getRowCount() != that.getRowCount() ||
         getColCount() != that.getColCount()) {
@@ -107,7 +108,7 @@ Matrix<_Type> Matrix<_Type>::operator-(const Matrix &that) //РѕРїРµСЂР°С‚РѕСЂ РІ
 
 
 template<typename _Type>
-Matrix<_Type> Matrix<_Type>::operator*(_Type number) // РѕРїРµСЂР°С‚РѕСЂ СѓРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†С‹ РЅР° С‡РёСЃР»Рѕ
+Matrix<_Type> Matrix<_Type>::operator*(_Type number) // оператор умножения матрицы на число
 {
     Matrix  result(getRowCount(), getColCount(), 0);
 
@@ -120,7 +121,7 @@ Matrix<_Type> Matrix<_Type>::operator*(_Type number) // РѕРїРµСЂР°С‚РѕСЂ СѓРјРЅР
 }
 
 template<typename _Type>
-Matrix<_Type> Matrix<_Type>::operator*(const Matrix &that) //РѕРїРµСЂР°С‚РѕСЂ РїРµСЂРµРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†
+Matrix<_Type> Matrix<_Type>::operator*(const Matrix &that) //оператор перемножения матриц
 {
     Matrix result(getRowCount(), that.getColCount(), 0);
     for (int i = 0; i < getRowCount(); i++) {
@@ -137,13 +138,13 @@ Matrix<_Type> Matrix<_Type>::operator*(const Matrix &that) //РѕРїРµСЂР°С‚РѕСЂ Рї
 }
 /////////////////////////////////////////////////////////////////
 template<typename _Type>
-int Matrix<_Type>::getRowCount() const // РїРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+int Matrix<_Type>::getRowCount() const // получить количество строк
 {
     return _value.size();
 }
 
 template<typename _Type>
-int Matrix<_Type>::getColCount() const //РїРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ
+int Matrix<_Type>::getColCount() const //получить количество столбцов
 {
     if (_value.empty())
         return 0;
@@ -151,7 +152,7 @@ int Matrix<_Type>::getColCount() const //РїРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ С
 }
 
 template<typename _Type>
-Matrix<_Type> Matrix<_Type>::transponse() //С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёРµ РјР°С‚СЂРёС†С‹
+Matrix<_Type> Matrix<_Type>::transponse() //транспонирование матрицы
 {
     Matrix mtx = Matrix(getColCount(), getRowCount(), 0);
     for (int i = 0; i < getRowCount(); i++) {
@@ -165,7 +166,7 @@ Matrix<_Type> Matrix<_Type>::transponse() //С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёРµ РјР
 
 
 template<typename _Type>
-_Type Matrix<_Type>::get(int row, int col) const // РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РјР°С‚СЂРёС†С‹
+_Type Matrix<_Type>::get(int row, int col) const // получить значение элемента матрицы
 {
     if ((unsigned int)row >= _value.size())
         return 0;
@@ -176,7 +177,7 @@ _Type Matrix<_Type>::get(int row, int col) const // РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµР
 }
 
 template<typename _Type>
-void Matrix<_Type>::put(int row, int col, _Type value) // РїСЂРёСЃРІРѕРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Сѓ РјР°С‚СЂРёС†С‹
+void Matrix<_Type>::put(int row, int col, _Type value) // присвоить значение элементу матрицы
 {
     if (row < _value.size()) {
         auto line = _value[row];
@@ -218,7 +219,7 @@ bool Matrix<_Type>::isCorrect(int rowFirst, int colFirst, int sizeS)
 
 
 template<typename _Type>
-std::ostream &operator<<(std::ostream &output, const Matrix<_Type> &m) // РѕРїРµСЂР°С‚РѕСЂ РІС‹РІРѕРґР° РјР°С‚СЂРёС†С‹
+std::ostream &operator<<(std::ostream &output, const Matrix<_Type> &m) // оператор вывода матрицы
 {
     if (m.getRowCount()) {
         for  (auto line : m._value) {

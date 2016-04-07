@@ -5,6 +5,7 @@
 #include "Element.h"
 #include "mainwindow.h"
 #include <QPalette>
+#include <QtWidgets>
 //#include <QDebug>
 //#include <QtGui>
 //#include <QWidget>

@@ -1,7 +1,7 @@
 #pragma once
 #include "matrix.h"
 
-
+#include <string>
 template<typename _Type>
 void Matrix<_Type>::loadFromFile(std::string file) //загрузка матрицы из файла
 {
@@ -140,7 +140,7 @@ Matrix<_Type> Matrix<_Type>::operator*(const Matrix &that) //оператор перемножен
 template<typename _Type>
 int Matrix<_Type>::getRowCount() const // получить количество строк
 {
-    return _value.size();
+    return _value.size(); 
 }
 
 template<typename _Type>
@@ -215,8 +215,6 @@ bool Matrix<_Type>::isCorrect(int rowFirst, int colFirst, int sizeS)
         }
     return true;
 }
-
-
 
 template<typename _Type>
 std::ostream &operator<<(std::ostream &output, const Matrix<_Type> &m) // оператор вывода матрицы

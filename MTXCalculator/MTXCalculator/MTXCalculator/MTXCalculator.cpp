@@ -39,11 +39,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
 	CreateConsole();
-	Matrix <int> mtx(3, 3, 2);
+	Matrix <int> mtx(4, 3, 2);
 	mtx.Print();
-	printf("fkajd");
-	//cout << "alslls";
-	system("pause");
+	mtx.Transform();
+	mtx.Print();
+
 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -98,7 +98,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MTXCALCULATOR));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+6);
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MTXCALCULATOR);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));

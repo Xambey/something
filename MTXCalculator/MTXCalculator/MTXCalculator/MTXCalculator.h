@@ -6,6 +6,7 @@
 #include <iostream>
 #include <exception>
 #include <fstream>
+#include <iterator>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 	void PutValue(int row, int col, const Type& val);
 	void SetValue(const Type& val);
 	void Print() const;
+	void Transform();
 	//операции
 	Matrix operator +(const Type& right);
 	Matrix operator -(const Type& right);
@@ -122,6 +124,23 @@ inline void Matrix<Type>::Print() const
 }
 
 template<typename Type>
+inline void Matrix<Type>::Transform() //транспонирование матрицы, не требуещее создание доп. объектов :)
+{
+	const int row = GetRowCount();
+	const int col = GetColCount();
+
+	int i = 0;
+	for (; i < col; i++) {
+		auto string = MatrixRow(row);
+		for (int j = 0; j < row; j++) {
+			string[j] = GetValue(j, i);
+		}
+		value[i] = string;
+	}
+	value.erase(value.begin() + i);
+}
+
+template<typename Type>
 inline Matrix<Type> Matrix<Type>::operator+(const Type& right)
 {
 	int row = GetRowCount();
@@ -129,10 +148,10 @@ inline Matrix<Type> Matrix<Type>::operator+(const Type& right)
 
 	if (row != right.GetRowCount() || col != right.GetColCount());
 		return *this;
-	Matrix obj(row, col, 0);
+	Matrix <Type> obj(row, col, 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
-			obj.PutValue(i, j, GetValue(i, j) + right;
+			obj.PutValue(i, j, GetValue(i, j) + right);
 		}
 	}
 	return obj;
@@ -146,7 +165,7 @@ inline Matrix<Type> Matrix<Type>::operator-(const Type & right)
 
 	if ((row != right.GetRowCount()) || (col != right.GetColCount()))
 		return *this;
-	Matrix obj(row, col, 0);
+	Matrix <Type> obj(row, col, 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			obj.PutValue(i, j, GetValue(i, j) - right);
@@ -161,7 +180,7 @@ inline Matrix<Type> Matrix<Type>::operator*(const Matrix & right)
 	int row = GetRowCount();
 	int col = GetColCount();
 	double sum = 0;
-	Matrix obj(row, right.GetColCount(), 0);
+	Matrix <Type> obj(row, right.GetColCount(), 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < right.GetColCount(); j++) {
 			for (int k = 0; k < col; k++) {
@@ -193,7 +212,7 @@ inline Matrix<Type> Matrix<Type>::operator/(const Matrix & right)
 	int row = GetRowCount();
 	int col = GetColCount();
 	double sum = 0;
-	Matrix obj(row, right.GetColCount(), 0);
+	Matrix <Type> obj(row, right.GetColCount(), 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < right.GetColCount(); j++) {
 			for (int k = 0; k < col; k++) {
@@ -267,7 +286,7 @@ inline Matrix<Type> Matrix<Type>::operator+(const Matrix & right)
 	const int col = GetColCount();
 	if ((row != right.GetRowCount()) || (col != right.GetColCount()))
 		return *this;
-	Matrix obj(row, col, 0);
+	Matrix <Type> obj(row, col, 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			obj.PutValue(i, j, GetValue(i,j) + right.GetValue(i, j));
@@ -283,7 +302,7 @@ inline Matrix<Type> Matrix<Type>::operator-(const Matrix & right)
 	const int col = GetColCount();
 	if ((row != right.GetRowCount()) || (col != right.GetColCount()))
 		return *this;
-	Matrix obj(row, col, 0);
+	Matrix <Type> obj(row, col, 0);
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			obj.PutValue(i, j, GetValue(i, j) - right.GetValue(i, j));

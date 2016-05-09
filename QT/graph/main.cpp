@@ -74,11 +74,10 @@ int main(int argc, char ** argv)
 	Operator::add(3, 'lg', log, "log");
 	Operator::add(3, 'abs', abs, "abs");
 	Operator::add(3, 'e', exp, "exp");
-	Operator::add(3, 'sqr', sqrt, "sqrt");
 
 	Operator::constant.insert({ "pi", 3.14159265359 });
 	Operator::constant.insert({ "e", 2.71828182846 });
-    MainWindow* w=new MainWindow();
+    MainWindow* w = new MainWindow();
 
     QPixmap bkgnd("C:/Users/Andrey/Documents/QT/graph/stone.jpg");
     bkgnd = bkgnd.scaled(w->size(), Qt::KeepAspectRatioByExpanding);

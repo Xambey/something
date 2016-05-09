@@ -2,6 +2,16 @@
 #include "matrix.h"
 
 #include <string>
+
+struct may {
+	int mas;
+};
+class A {
+	int pole;
+};
+class B: public A {
+
+};
 template<typename _Type>
 void Matrix<_Type>::loadFromFile(std::string file) //загрузка матрицы из файла
 {
